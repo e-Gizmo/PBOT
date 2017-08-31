@@ -1,0 +1,1071 @@
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:   1
+
+
+PC     Object              I  Line    Source 
+                           A     1    ; Zilog Z8 Encore! ANSI C Compiler Release 3.62
+                           A     2    ; -nolocalcse -optsize -nofastcall -const=RAM -
+                           A     3    ; -nooptlink -regvar -reduceopt -debug -norevaa
+                           A     4    ; -alias 
+                           A     5    	DEFINE ollower_TEXT,SPACE=ROM
+                           A     6    	FILE	"..\LINE FOLLOWER.C"
+                           A     7    .debug "C"
+                           A     8    	SEGMENT FAR_BSS
+000000                     A     9    _d:
+000000                     A    10    	DS	2*1
+                           A    11    .define "d"
+                           A    12    .alias "_d"
+                           A    13    .class 83
+                           A    14    .value _d
+                           A    15    .type 3
+                           A    16    .type 0
+                           A    17    .endef
+000002                     A    18    _runspeed:
+000002                     A    19    	DS	2*1
+                           A    20    .define "runspeed"
+                           A    21    .alias "_runspeed"
+                           A    22    .class 83
+                           A    23    .value _runspeed
+                           A    24    .type 3
+                           A    25    .type 0
+                           A    26    .endef
+                           A    27    	SEGMENT FAR_DATA
+000000                     A    28    _runtime:
+000000 04B0                A    29    	DW	1200
+                           A    30    .define "runtime"
+                           A    31    .alias "_runtime"
+                           A    32    .class 69
+                           A    33    .value _runtime
+                           A    34    .type 3
+                           A    35    .type 0
+                           A    36    .endef
+                           A    37    	SEGMENT FAR_BSS
+000004                     A    38    _input:
+000004                     A    39    	DS	1
+                           A    40    .define "input"
+                           A    41    .alias "_input"
+                           A    42    .class 83
+                           A    43    .value _input
+                           A    44    .type 2
+                           A    45    .type 0
+                           A    46    .endef
+                           A    47    	SEGMENT ROM_DATA
+                           A    48    
+                           A    49    
+                           A    50    ;**************************** _read_line ******
+                           A    51    ;Name                         Addr/Register   S
+                           A    52    ;_input                              STATIC    
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:   2
+
+
+PC     Object              I  Line    Source line follower.src
+                           A    53    
+                           A    54    
+                           A    55    ; Aggregate Stack Size: 0 (words)
+                           A    56    
+                           A    57    
+                           A    58    	.FRAME _n_read_line,?_n_read_line,RDATA
+                           A    59    	.FRAME _f_read_line,?_f_read_line,EDATA
+                           A    60    	SEGMENT ollower_TEXT
+000000                     A    61    _read_line:
+                           A    62    .define "_read_line"
+                           A    63    .value _read_line
+                           A    64    .class 2
+                           A    65    .type 65
+                           A    66    .type 0
+                           A    67    .endef
+                           A    68    .begfunc "read_line",16,"_read_line"
+000000 D6 0000             A    69    	CALL	__b_frameset00
+                           A    70    ;    1	#include <ez8.h>
+                           A    71    ;    2	
+                           A    72    ;    3	void forward(int ontime1, int offtime1)
+                           A    73    ;    4	void reverse(int ontime1, int offtime1)
+                           A    74    ;    5	void left(int ontime1, int offtime1);
+                           A    75    ;    6	void rotateL(int ontime1, int offtime1)
+                           A    76    ;    7	void right(int ontime1, int offtime1);
+                           A    77    ;    8	void rotateR(int ontime1, int offtime1)
+                           A    78    ;    9	
+                           A    79    ;   10	int d;
+                           A    80    ;   11	int runspeed;
+                           A    81    ;   12	int runtime = 1200;
+                           A    82    ;   13	char input;
+                           A    83    ;   14	
+                           A    84    ;   15	void read_line(void)
+                           A    85    ;   16	{
+                           A    86    ;   17		input=PAIN;
+                           A    87    .line 17
+000003 E8FD2004            A    88    	LDX	_input,4050
+                           A    89    ;   18		input = input << 3;
+                           A    90    .line 18
+000007 840004              A    91    	LDX	R0,_input
+00000A 0200                A    92    	ADD	R0,R0
+00000C 0200                A    93    	ADD	R0,R0
+00000E 0200                A    94    	ADD	R0,R0
+000010 940004              A    95    	LDX	_input,R0
+                           A    96    ;   19		input=input&0x70;
+                           A    97    .line 19
+000013 59700004            A    98    	ANDX	_input,#112
+                           A    99    ;   20		input ^= 0x70;
+                           A   100    .line 20
+000017 B9700004            A   101    	XORX	_input,#112
+                           A   102    ;   21	}
+                           A   103    .line 21
+00001B D6 0000             A   104    	CALL	__b_framereset
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:   3
+
+
+PC     Object              I  Line    Source line follower.src
+00001E AF                  A   105    	RET	
+                           A   106    .endfunc "read_line",21,"_read_line"
+                           A   107    	SEGMENT ROM_DATA
+                           A   108    
+                           A   109    
+                           A   110    ;**************************** _main ***********
+                           A   111    ;Name                         Addr/Register   S
+                           A   112    ;_right                              IMPORT  --
+                           A   113    ;_rotateR                            IMPORT  --
+                           A   114    ;_left                               IMPORT  --
+                           A   115    ;_forward                            IMPORT  --
+                           A   116    ;_rotateL                            IMPORT  --
+                           A   117    ;_runtime                            STATIC    
+                           A   118    ;_reverse                            IMPORT  --
+                           A   119    ;_runspeed                           STATIC    
+                           A   120    ;_input                              STATIC    
+                           A   121    
+                           A   122    
+                           A   123    ; Aggregate Stack Size: 0 (words)
+                           A   124    
+                           A   125    
+                           A   126    	.FRAME _n_main,?_n_main,RDATA
+                           A   127    	.FCALL _n_reverse
+                           A   128    	.FCALL _n_read_line
+                           A   129    	.FCALL _n_rotateL
+                           A   130    	.FCALL _n_forward
+                           A   131    	.FCALL _n_left
+                           A   132    	.FCALL _n_rotateR
+                           A   133    	.FCALL _n_right
+                           A   134    	.FRAME _f_main,?_f_main,EDATA
+                           A   135    	.FCALL _f_reverse
+                           A   136    	.FCALL _f_read_line
+                           A   137    	.FCALL _f_rotateL
+                           A   138    	.FCALL _f_forward
+                           A   139    	.FCALL _f_left
+                           A   140    	.FCALL _f_rotateR
+                           A   141    	.FCALL _f_right
+                           A   142    	SEGMENT ollower_TEXT
+00001F                     A   143    _main:
+                           A   144    .define "_main"
+                           A   145    .value _main
+                           A   146    .class 2
+                           A   147    .type 65
+                           A   148    .type 0
+                           A   149    .endef
+                           A   150    .begfunc "main",32,"_main"
+00001F D6 0000             A   151    	CALL	__b_frameset00
+                           A   152    ;   22	
+                           A   153    ;   23	#define STOP 	0x00		//0000 
+                           A   154    ;   24	#define L 		0x03		//0011 
+                           A   155    ;   25	#define REV 	0x06		//0110 
+                           A   156    ;   26	#define RL 		0x07		//0111 
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:   4
+
+
+PC     Object              I  Line    Source line follower.src
+                           A   157    ;   27	#define R 		0x0C		//1100 
+                           A   158    ;   28	#define RR 		0x0E		//1110 
+                           A   159    ;   29	#define FWD 	0x0F		//1111 
+                           A   160    ;   30	
+                           A   161    ;   31	void main()
+                           A   162    ;   32	{
+                           A   163    ;   33		PCDD = 0xF0;	//outputs for motor
+                           A   164    .line 33
+000022 E9010FD8            A   165    	LDX	4056,#1
+000026 E9F00FD9            A   166    	LDX	4057,#240
+                           A   167    ;   34	
+                           A   168    ;   35	/*
+                           A   169    ;   36		Sensor truth table:		hex value:
+                           A   170    ;   37		000 = reverse				  	0x0
+                           A   171    ;   38		001 = rotateL					0x0
+                           A   172    ;   39		010 = forward					0x0
+                           A   173    ;   40		011 = left						0x0
+                           A   174    ;   41		100 = rotateR					0x0
+                           A   175    ;   42		101 = reverse					0x0
+                           A   176    ;   43		110 = right						0x0
+                           A   177    ;   44		111 = reverse					0x0
+                           A   178    ;   45	*/
+                           A   179    ;   46		while(1)
+00002A                     A   180    _2_L_24:
+                           A   181    .line 46
+                           A   182    ;   47		{
+                           A   183    ;   48	//		read_line();
+                           A   184    ;   49			while(input==0x00)
+00002A                     A   185    _2_L_1:
+                           A   186    .line 49
+00002A A9000004            A   187    	CPX	_input,#-0
+00002E EB 30               A   188    	JR	NE,_2_L_3
+                           A   189    ;   50			{	
+                           A   190    ;   51				runspeed = 500;
+                           A   191    .line 51
+000030 E9010002            A   192    	LDX	_runspeed,#1
+000034 E9F40003            A   193    	LDX	_runspeed+1,#244
+                           A   194    ;   52				reverse(runspeed,runtime - 
+                           A   195    .line 52
+000038 841000              A   196    	LDX	R1,_runtime
+00003B 840001              A   197    	LDX	R0,_runtime+1
+00003E 28 003EE0           A   198    	SUBX	R0,_runspeed+1
+000042 38 002EE1           A   199    	SBCX	R1,_runspeed
+000046 70E0                A   200    	PUSH	R0
+000048 70E1                A   201    	PUSH	R1
+00004A C8 0030             A   202    	PUSHX	_runspeed+1
+00004D C8 0020             A   203    	PUSHX	_runspeed
+000050 D6 01DF             A   204    	CALL	_reverse
+000053 50E0                A   205    	POP	R0
+000055 50E0                A   206    	POP	R0
+000057 50E0                A   207    	POP	R0
+000059 50E0                A   208    	POP	R0
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:   5
+
+
+PC     Object              I  Line    Source line follower.src
+                           A   209    ;   53				read_line();
+                           A   210    .line 53
+00005B D6 0000             A   211    	CALL	_read_line
+                           A   212    ;   54			}
+                           A   213    .line 54
+00005E 8B CA               A   214    	JR	_2_L_1
+                           A   215    ;   55			while(input==0x10)
+000060                     A   216    _2_L_3:
+                           A   217    .line 55
+000060 A9100004            A   218    	CPX	_input,#16
+000064 EB 30               A   219    	JR	NE,_2_L_6
+                           A   220    ;   56			{
+                           A   221    ;   57				runspeed = 500;
+                           A   222    .line 57
+000066 E9010002            A   223    	LDX	_runspeed,#1
+00006A E9F40003            A   224    	LDX	_runspeed+1,#244
+                           A   225    ;   58				rotateL(runspeed,runtime - 
+                           A   226    .line 58
+00006E 841000              A   227    	LDX	R1,_runtime
+000071 840001              A   228    	LDX	R0,_runtime+1
+000074 28 003EE0           A   229    	SUBX	R0,_runspeed+1
+000078 38 002EE1           A   230    	SBCX	R1,_runspeed
+00007C 70E0                A   231    	PUSH	R0
+00007E 70E1                A   232    	PUSH	R1
+000080 C8 0030             A   233    	PUSHX	_runspeed+1
+000083 C8 0020             A   234    	PUSHX	_runspeed
+000086 D6 02A1             A   235    	CALL	_rotateL
+000089 50E0                A   236    	POP	R0
+00008B 50E0                A   237    	POP	R0
+00008D 50E0                A   238    	POP	R0
+00008F 50E0                A   239    	POP	R0
+                           A   240    ;   59				read_line();
+                           A   241    .line 59
+000091 D6 0000             A   242    	CALL	_read_line
+                           A   243    ;   60			}
+                           A   244    .line 60
+000094 8B CA               A   245    	JR	_2_L_3
+                           A   246    ;   61			while(input==0x20)
+000096                     A   247    _2_L_6:
+                           A   248    .line 61
+000096 A9200004            A   249    	CPX	_input,#32
+00009A EB 30               A   250    	JR	NE,_2_L_9
+                           A   251    ;   62			{
+                           A   252    ;   63				runspeed = 500;
+                           A   253    .line 63
+00009C E9010002            A   254    	LDX	_runspeed,#1
+0000A0 E9F40003            A   255    	LDX	_runspeed+1,#244
+                           A   256    ;   64				forward(runspeed,runtime - 
+                           A   257    .line 64
+0000A4 841000              A   258    	LDX	R1,_runtime
+0000A7 840001              A   259    	LDX	R0,_runtime+1
+0000AA 28 003EE0           A   260    	SUBX	R0,_runspeed+1
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:   6
+
+
+PC     Object              I  Line    Source line follower.src
+0000AE 38 002EE1           A   261    	SBCX	R1,_runspeed
+0000B2 70E0                A   262    	PUSH	R0
+0000B4 70E1                A   263    	PUSH	R1
+0000B6 C8 0030             A   264    	PUSHX	_runspeed+1
+0000B9 C8 0020             A   265    	PUSHX	_runspeed
+0000BC D6 03C4             A   266    	CALL	_forward
+0000BF 50E0                A   267    	POP	R0
+0000C1 50E0                A   268    	POP	R0
+0000C3 50E0                A   269    	POP	R0
+0000C5 50E0                A   270    	POP	R0
+                           A   271    ;   65				read_line();
+                           A   272    .line 65
+0000C7 D6 0000             A   273    	CALL	_read_line
+                           A   274    ;   66			}
+                           A   275    .line 66
+0000CA 8B CA               A   276    	JR	_2_L_6
+                           A   277    ;   67			while(input==0x30)
+0000CC                     A   278    _2_L_9:
+                           A   279    .line 67
+0000CC A9300004            A   280    	CPX	_input,#48
+0000D0 EB 30               A   281    	JR	NE,_2_L_12
+                           A   282    ;   68			{
+                           A   283    ;   69				runspeed = 800;
+                           A   284    .line 69
+0000D2 E9030002            A   285    	LDX	_runspeed,#3
+0000D6 E9200003            A   286    	LDX	_runspeed+1,#32
+                           A   287    ;   70				left(runspeed,runtime - run
+                           A   288    .line 70
+0000DA 841000              A   289    	LDX	R1,_runtime
+0000DD 840001              A   290    	LDX	R0,_runtime+1
+0000E0 28 003EE0           A   291    	SUBX	R0,_runspeed+1
+0000E4 38 002EE1           A   292    	SBCX	R1,_runspeed
+0000E8 70E0                A   293    	PUSH	R0
+0000EA 70E1                A   294    	PUSH	R1
+0000EC C8 0030             A   295    	PUSHX	_runspeed+1
+0000EF C8 0020             A   296    	PUSHX	_runspeed
+0000F2 D6 0240             A   297    	CALL	_left
+0000F5 50E0                A   298    	POP	R0
+0000F7 50E0                A   299    	POP	R0
+0000F9 50E0                A   300    	POP	R0
+0000FB 50E0                A   301    	POP	R0
+                           A   302    ;   71				read_line();
+                           A   303    .line 71
+0000FD D6 0000             A   304    	CALL	_read_line
+                           A   305    ;   72			}
+                           A   306    .line 72
+000100 8B CA               A   307    	JR	_2_L_9
+                           A   308    ;   73			while(input==0x40)
+000102                     A   309    _2_L_12:
+                           A   310    .line 73
+000102 A9400004            A   311    	CPX	_input,#64
+000106 EB 30               A   312    	JR	NE,_2_L_15
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:   7
+
+
+PC     Object              I  Line    Source line follower.src
+                           A   313    ;   74			{
+                           A   314    ;   75				runspeed = 500;
+                           A   315    .line 75
+000108 E9010002            A   316    	LDX	_runspeed,#1
+00010C E9F40003            A   317    	LDX	_runspeed+1,#244
+                           A   318    ;   76				rotateR(runspeed,runtime - 
+                           A   319    .line 76
+000110 841000              A   320    	LDX	R1,_runtime
+000113 840001              A   321    	LDX	R0,_runtime+1
+000116 28 003EE0           A   322    	SUBX	R0,_runspeed+1
+00011A 38 002EE1           A   323    	SBCX	R1,_runspeed
+00011E 70E0                A   324    	PUSH	R0
+000120 70E1                A   325    	PUSH	R1
+000122 C8 0030             A   326    	PUSHX	_runspeed+1
+000125 C8 0020             A   327    	PUSHX	_runspeed
+000128 D6 0363             A   328    	CALL	_rotateR
+00012B 50E0                A   329    	POP	R0
+00012D 50E0                A   330    	POP	R0
+00012F 50E0                A   331    	POP	R0
+000131 50E0                A   332    	POP	R0
+                           A   333    ;   77				read_line();
+                           A   334    .line 77
+000133 D6 0000             A   335    	CALL	_read_line
+                           A   336    ;   78			}
+                           A   337    .line 78
+000136 8B CA               A   338    	JR	_2_L_12
+                           A   339    ;   79			while(input==0x50)
+000138                     A   340    _2_L_15:
+                           A   341    .line 79
+000138 A9500004            A   342    	CPX	_input,#80
+00013C EB 30               A   343    	JR	NE,_2_L_18
+                           A   344    ;   80			{
+                           A   345    ;   81				runspeed = 500;
+                           A   346    .line 81
+00013E E9010002            A   347    	LDX	_runspeed,#1
+000142 E9F40003            A   348    	LDX	_runspeed+1,#244
+                           A   349    ;   82				reverse(runspeed,runtime - 
+                           A   350    .line 82
+000146 841000              A   351    	LDX	R1,_runtime
+000149 840001              A   352    	LDX	R0,_runtime+1
+00014C 28 003EE0           A   353    	SUBX	R0,_runspeed+1
+000150 38 002EE1           A   354    	SBCX	R1,_runspeed
+000154 70E0                A   355    	PUSH	R0
+000156 70E1                A   356    	PUSH	R1
+000158 C8 0030             A   357    	PUSHX	_runspeed+1
+00015B C8 0020             A   358    	PUSHX	_runspeed
+00015E D6 01DF             A   359    	CALL	_reverse
+000161 50E0                A   360    	POP	R0
+000163 50E0                A   361    	POP	R0
+000165 50E0                A   362    	POP	R0
+000167 50E0                A   363    	POP	R0
+                           A   364    ;   83				read_line();
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:   8
+
+
+PC     Object              I  Line    Source line follower.src
+                           A   365    .line 83
+000169 D6 0000             A   366    	CALL	_read_line
+                           A   367    ;   84			}
+                           A   368    .line 84
+00016C 8B CA               A   369    	JR	_2_L_15
+                           A   370    ;   85			while(input==0x60)
+00016E                     A   371    _2_L_18:
+                           A   372    .line 85
+00016E A9600004            A   373    	CPX	_input,#96
+000172 EB 30               A   374    	JR	NE,_2_L_21
+                           A   375    ;   86			{
+                           A   376    ;   87				runspeed = 800;
+                           A   377    .line 87
+000174 E9030002            A   378    	LDX	_runspeed,#3
+000178 E9200003            A   379    	LDX	_runspeed+1,#32
+                           A   380    ;   88				right(runspeed,runtime - ru
+                           A   381    .line 88
+00017C 841000              A   382    	LDX	R1,_runtime
+00017F 840001              A   383    	LDX	R0,_runtime+1
+000182 28 003EE0           A   384    	SUBX	R0,_runspeed+1
+000186 38 002EE1           A   385    	SBCX	R1,_runspeed
+00018A 70E0                A   386    	PUSH	R0
+00018C 70E1                A   387    	PUSH	R1
+00018E C8 0030             A   388    	PUSHX	_runspeed+1
+000191 C8 0020             A   389    	PUSHX	_runspeed
+000194 D6 0302             A   390    	CALL	_right
+000197 50E0                A   391    	POP	R0
+000199 50E0                A   392    	POP	R0
+00019B 50E0                A   393    	POP	R0
+00019D 50E0                A   394    	POP	R0
+                           A   395    ;   89				read_line();
+                           A   396    .line 89
+00019F D6 0000             A   397    	CALL	_read_line
+                           A   398    ;   90			}
+                           A   399    .line 90
+0001A2 8B CA               A   400    	JR	_2_L_18
+                           A   401    ;   91			while(input==0x70)
+0001A4                     A   402    _2_L_21:
+                           A   403    .line 91
+0001A4 A9700004            A   404    	CPX	_input,#112
+0001A8 ED 00 2A            A   405    	JR	NE,_2_L_24
+                           A   406    ;   92			{
+                           A   407    ;   93				runspeed = 500;
+                           A   408    .line 93
+0001AB E9010002            A   409    	LDX	_runspeed,#1
+0001AF E9F40003            A   410    	LDX	_runspeed+1,#244
+                           A   411    ;   94				forward(runspeed,runtime - 
+                           A   412    .line 94
+0001B3 841000              A   413    	LDX	R1,_runtime
+0001B6 840001              A   414    	LDX	R0,_runtime+1
+0001B9 28 003EE0           A   415    	SUBX	R0,_runspeed+1
+0001BD 38 002EE1           A   416    	SBCX	R1,_runspeed
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:   9
+
+
+PC     Object              I  Line    Source line follower.src
+0001C1 70E0                A   417    	PUSH	R0
+0001C3 70E1                A   418    	PUSH	R1
+0001C5 C8 0030             A   419    	PUSHX	_runspeed+1
+0001C8 C8 0020             A   420    	PUSHX	_runspeed
+0001CB D6 03C4             A   421    	CALL	_forward
+0001CE 50E0                A   422    	POP	R0
+0001D0 50E0                A   423    	POP	R0
+0001D2 50E0                A   424    	POP	R0
+0001D4 50E0                A   425    	POP	R0
+                           A   426    ;   95				read_line();
+                           A   427    .line 95
+0001D6 D6 0000             A   428    	CALL	_read_line
+                           A   429    ;   96			}
+                           A   430    .line 96
+0001D9 8B C9               A   431    	JR	_2_L_21
+                           A   432    ;   97		}
+                           A   433    ;   98	}		
+                           A   434    .line 98
+0001DB D6 0000             A   435    	CALL	__b_framereset
+0001DE AF                  A   436    	RET	
+                           A   437    .endfunc "main",98,"_main"
+                           A   438    	SEGMENT ROM_DATA
+                           A   439    
+                           A   440    
+                           A   441    ;**************************** _reverse ********
+                           A   442    ;Name                         Addr/Register   S
+                           A   443    ;_d                                  STATIC    
+                           A   444    ;offtime1                             R15+6    
+                           A   445    ;ontime1                              R15+4    
+                           A   446    
+                           A   447    
+                           A   448    ; Aggregate Stack Size: 0 (words)
+                           A   449    
+                           A   450    
+                           A   451    	.FRAME _n_reverse,?_n_reverse,RDATA
+                           A   452    	.FRAME _f_reverse,?_f_reverse,EDATA
+                           A   453    	SEGMENT ollower_TEXT
+0001DF                     A   454    _reverse:
+                           A   455    .define "_reverse"
+                           A   456    .value _reverse
+                           A   457    .class 2
+                           A   458    .type 65
+                           A   459    .type 0
+                           A   460    .endef
+                           A   461    .begfunc "reverse",101,"_reverse"
+                           A   462    .define "ontime1"
+                           A   463    .class 9
+                           A   464    .value 4
+                           A   465    .type 3
+                           A   466    .type 0
+                           A   467    .endef
+                           A   468    .define "offtime1"
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:  10
+
+
+PC     Object              I  Line    Source line follower.src
+                           A   469    .class 9
+                           A   470    .value 6
+                           A   471    .type 3
+                           A   472    .type 0
+                           A   473    .endef
+0001DF D6 0000             A   474    	CALL	__b_frameset00
+                           A   475    ;   99	
+                           A   476    ;  100	void reverse(int ontime1, int offtime1)
+                           A   477    ;  101	{
+                           A   478    ;  102		PCOUT = REV;			// reverse
+                           A   479    .line 102
+0001E2 E9060FDB            A   480    	LDX	4059,#6
+0001E6 8B 13               A   481    	JR	_3_L_28
+                           A   482    ;  103		for(d=0;d<ontime1;d++){}
+0001E8                     A   483    _3_L_29:
+                           A   484    .line 103
+0001E8 880E04              A   485    	LDX	R0,4(RR14)
+0001EB 881E05              A   486    	LDX	R1,5(RR14)
+0001EE A8 001EE1           A   487    	CPX	R1,_d+1
+0001F2 1FA8 000EE0         A   488    	CPCX	R0,_d
+0001F7 AB 0C               A   489    	JR	GT,_3_L_31
+0001F9 8B 14               A   490    	JR	_3_L_32
+0001FB                     A   491    _3_L_28:
+0001FB E9000000            A   492    	LDX	_d,#-0
+0001FF E9000001            A   493    	LDX	_d+1,#-0
+000203 8B E3               A   494    	JR	_3_L_29
+000205                     A   495    _3_L_31:
+000205 09010001            A   496    	ADDX	_d+1,#1
+000209 19000000            A   497    	ADCX	_d,#-0
+00020D 8B D9               A   498    	JR	_3_L_29
+00020F                     A   499    _3_L_32:
+                           A   500    ;  104		PCOUT=0;				//	stop
+                           A   501    .line 104
+00020F E9000FDB            A   502    	LDX	4059,#-0
+000213 8B 13               A   503    	JR	_3_L_34
+                           A   504    ;  105		for(d=0;d<offtime1;d++){}
+000215                     A   505    _3_L_35:
+                           A   506    .line 105
+000215 880E06              A   507    	LDX	R0,6(RR14)
+000218 881E07              A   508    	LDX	R1,7(RR14)
+00021B A8 001EE1           A   509    	CPX	R1,_d+1
+00021F 1FA8 000EE0         A   510    	CPCX	R0,_d
+000224 AB 0C               A   511    	JR	GT,_3_L_37
+000226 8B 14               A   512    	JR	_3_L_38
+000228                     A   513    _3_L_34:
+000228 E9000000            A   514    	LDX	_d,#-0
+00022C E9000001            A   515    	LDX	_d+1,#-0
+000230 8B E3               A   516    	JR	_3_L_35
+000232                     A   517    _3_L_37:
+000232 09010001            A   518    	ADDX	_d+1,#1
+000236 19000000            A   519    	ADCX	_d,#-0
+00023A 8B D9               A   520    	JR	_3_L_35
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:  11
+
+
+PC     Object              I  Line    Source line follower.src
+                           A   521    ;  106	}
+00023C                     A   522    _3_L_38:
+                           A   523    .line 106
+00023C D6 0000             A   524    	CALL	__b_framereset
+00023F AF                  A   525    	RET	
+                           A   526    .endfunc "reverse",106,"_reverse"
+                           A   527    	SEGMENT ROM_DATA
+                           A   528    
+                           A   529    
+                           A   530    ;**************************** _left ***********
+                           A   531    ;Name                         Addr/Register   S
+                           A   532    ;_d                                  STATIC    
+                           A   533    ;offtime1                             R15+6    
+                           A   534    ;ontime1                              R15+4    
+                           A   535    
+                           A   536    
+                           A   537    ; Aggregate Stack Size: 0 (words)
+                           A   538    
+                           A   539    
+                           A   540    	.FRAME _n_left,?_n_left,RDATA
+                           A   541    	.FRAME _f_left,?_f_left,EDATA
+                           A   542    	SEGMENT ollower_TEXT
+000240                     A   543    _left:
+                           A   544    .define "_left"
+                           A   545    .value _left
+                           A   546    .class 2
+                           A   547    .type 65
+                           A   548    .type 0
+                           A   549    .endef
+                           A   550    .begfunc "left",109,"_left"
+                           A   551    .define "ontime1"
+                           A   552    .class 9
+                           A   553    .value 4
+                           A   554    .type 3
+                           A   555    .type 0
+                           A   556    .endef
+                           A   557    .define "offtime1"
+                           A   558    .class 9
+                           A   559    .value 6
+                           A   560    .type 3
+                           A   561    .type 0
+                           A   562    .endef
+000240 D6 0000             A   563    	CALL	__b_frameset00
+                           A   564    ;  107	
+                           A   565    ;  108	void left(int ontime1, int offtime1)
+                           A   566    ;  109	{
+                           A   567    ;  110		PCOUT = L;				// left
+                           A   568    .line 110
+000243 E9030FDB            A   569    	LDX	4059,#3
+000247 8B 13               A   570    	JR	_4_L_40
+                           A   571    ;  111		for(d=0;d<ontime1;d++){}
+000249                     A   572    _4_L_41:
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:  12
+
+
+PC     Object              I  Line    Source line follower.src
+                           A   573    .line 111
+000249 880E04              A   574    	LDX	R0,4(RR14)
+00024C 881E05              A   575    	LDX	R1,5(RR14)
+00024F A8 001EE1           A   576    	CPX	R1,_d+1
+000253 1FA8 000EE0         A   577    	CPCX	R0,_d
+000258 AB 0C               A   578    	JR	GT,_4_L_43
+00025A 8B 14               A   579    	JR	_4_L_44
+00025C                     A   580    _4_L_40:
+00025C E9000000            A   581    	LDX	_d,#-0
+000260 E9000001            A   582    	LDX	_d+1,#-0
+000264 8B E3               A   583    	JR	_4_L_41
+000266                     A   584    _4_L_43:
+000266 09010001            A   585    	ADDX	_d+1,#1
+00026A 19000000            A   586    	ADCX	_d,#-0
+00026E 8B D9               A   587    	JR	_4_L_41
+000270                     A   588    _4_L_44:
+                           A   589    ;  112		PCOUT=0;				//	stop
+                           A   590    .line 112
+000270 E9000FDB            A   591    	LDX	4059,#-0
+000274 8B 13               A   592    	JR	_4_L_46
+                           A   593    ;  113		for(d=0;d<offtime1;d++){}
+000276                     A   594    _4_L_47:
+                           A   595    .line 113
+000276 880E06              A   596    	LDX	R0,6(RR14)
+000279 881E07              A   597    	LDX	R1,7(RR14)
+00027C A8 001EE1           A   598    	CPX	R1,_d+1
+000280 1FA8 000EE0         A   599    	CPCX	R0,_d
+000285 AB 0C               A   600    	JR	GT,_4_L_49
+000287 8B 14               A   601    	JR	_4_L_50
+000289                     A   602    _4_L_46:
+000289 E9000000            A   603    	LDX	_d,#-0
+00028D E9000001            A   604    	LDX	_d+1,#-0
+000291 8B E3               A   605    	JR	_4_L_47
+000293                     A   606    _4_L_49:
+000293 09010001            A   607    	ADDX	_d+1,#1
+000297 19000000            A   608    	ADCX	_d,#-0
+00029B 8B D9               A   609    	JR	_4_L_47
+                           A   610    ;  114	}
+00029D                     A   611    _4_L_50:
+                           A   612    .line 114
+00029D D6 0000             A   613    	CALL	__b_framereset
+0002A0 AF                  A   614    	RET	
+                           A   615    .endfunc "left",114,"_left"
+                           A   616    	SEGMENT ROM_DATA
+                           A   617    
+                           A   618    
+                           A   619    ;**************************** _rotateL ********
+                           A   620    ;Name                         Addr/Register   S
+                           A   621    ;_d                                  STATIC    
+                           A   622    ;offtime1                             R15+6    
+                           A   623    ;ontime1                              R15+4    
+                           A   624    
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:  13
+
+
+PC     Object              I  Line    Source line follower.src
+                           A   625    
+                           A   626    ; Aggregate Stack Size: 0 (words)
+                           A   627    
+                           A   628    
+                           A   629    	.FRAME _n_rotateL,?_n_rotateL,RDATA
+                           A   630    	.FRAME _f_rotateL,?_f_rotateL,EDATA
+                           A   631    	SEGMENT ollower_TEXT
+0002A1                     A   632    _rotateL:
+                           A   633    .define "_rotateL"
+                           A   634    .value _rotateL
+                           A   635    .class 2
+                           A   636    .type 65
+                           A   637    .type 0
+                           A   638    .endef
+                           A   639    .begfunc "rotateL",117,"_rotateL"
+                           A   640    .define "ontime1"
+                           A   641    .class 9
+                           A   642    .value 4
+                           A   643    .type 3
+                           A   644    .type 0
+                           A   645    .endef
+                           A   646    .define "offtime1"
+                           A   647    .class 9
+                           A   648    .value 6
+                           A   649    .type 3
+                           A   650    .type 0
+                           A   651    .endef
+0002A1 D6 0000             A   652    	CALL	__b_frameset00
+                           A   653    ;  115	
+                           A   654    ;  116	void rotateL(int ontime1, int offtime1)
+                           A   655    ;  117	{
+                           A   656    ;  118		PCOUT = RL;				// rotateL
+                           A   657    .line 118
+0002A4 E9070FDB            A   658    	LDX	4059,#7
+0002A8 8B 13               A   659    	JR	_5_L_52
+                           A   660    ;  119		for(d=0;d<ontime1;d++){}
+0002AA                     A   661    _5_L_53:
+                           A   662    .line 119
+0002AA 880E04              A   663    	LDX	R0,4(RR14)
+0002AD 881E05              A   664    	LDX	R1,5(RR14)
+0002B0 A8 001EE1           A   665    	CPX	R1,_d+1
+0002B4 1FA8 000EE0         A   666    	CPCX	R0,_d
+0002B9 AB 0C               A   667    	JR	GT,_5_L_55
+0002BB 8B 14               A   668    	JR	_5_L_56
+0002BD                     A   669    _5_L_52:
+0002BD E9000000            A   670    	LDX	_d,#-0
+0002C1 E9000001            A   671    	LDX	_d+1,#-0
+0002C5 8B E3               A   672    	JR	_5_L_53
+0002C7                     A   673    _5_L_55:
+0002C7 09010001            A   674    	ADDX	_d+1,#1
+0002CB 19000000            A   675    	ADCX	_d,#-0
+0002CF 8B D9               A   676    	JR	_5_L_53
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:  14
+
+
+PC     Object              I  Line    Source line follower.src
+0002D1                     A   677    _5_L_56:
+                           A   678    ;  120		PCOUT=0;				//	stop
+                           A   679    .line 120
+0002D1 E9000FDB            A   680    	LDX	4059,#-0
+0002D5 8B 13               A   681    	JR	_5_L_58
+                           A   682    ;  121		for(d=0;d<offtime1;d++){}
+0002D7                     A   683    _5_L_59:
+                           A   684    .line 121
+0002D7 880E06              A   685    	LDX	R0,6(RR14)
+0002DA 881E07              A   686    	LDX	R1,7(RR14)
+0002DD A8 001EE1           A   687    	CPX	R1,_d+1
+0002E1 1FA8 000EE0         A   688    	CPCX	R0,_d
+0002E6 AB 0C               A   689    	JR	GT,_5_L_61
+0002E8 8B 14               A   690    	JR	_5_L_62
+0002EA                     A   691    _5_L_58:
+0002EA E9000000            A   692    	LDX	_d,#-0
+0002EE E9000001            A   693    	LDX	_d+1,#-0
+0002F2 8B E3               A   694    	JR	_5_L_59
+0002F4                     A   695    _5_L_61:
+0002F4 09010001            A   696    	ADDX	_d+1,#1
+0002F8 19000000            A   697    	ADCX	_d,#-0
+0002FC 8B D9               A   698    	JR	_5_L_59
+                           A   699    ;  122	}
+0002FE                     A   700    _5_L_62:
+                           A   701    .line 122
+0002FE D6 0000             A   702    	CALL	__b_framereset
+000301 AF                  A   703    	RET	
+                           A   704    .endfunc "rotateL",122,"_rotateL"
+                           A   705    	SEGMENT ROM_DATA
+                           A   706    
+                           A   707    
+                           A   708    ;**************************** _right **********
+                           A   709    ;Name                         Addr/Register   S
+                           A   710    ;_d                                  STATIC    
+                           A   711    ;offtime1                             R15+6    
+                           A   712    ;ontime1                              R15+4    
+                           A   713    
+                           A   714    
+                           A   715    ; Aggregate Stack Size: 0 (words)
+                           A   716    
+                           A   717    
+                           A   718    	.FRAME _n_right,?_n_right,RDATA
+                           A   719    	.FRAME _f_right,?_f_right,EDATA
+                           A   720    	SEGMENT ollower_TEXT
+000302                     A   721    _right:
+                           A   722    .define "_right"
+                           A   723    .value _right
+                           A   724    .class 2
+                           A   725    .type 65
+                           A   726    .type 0
+                           A   727    .endef
+                           A   728    .begfunc "right",125,"_right"
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:  15
+
+
+PC     Object              I  Line    Source line follower.src
+                           A   729    .define "ontime1"
+                           A   730    .class 9
+                           A   731    .value 4
+                           A   732    .type 3
+                           A   733    .type 0
+                           A   734    .endef
+                           A   735    .define "offtime1"
+                           A   736    .class 9
+                           A   737    .value 6
+                           A   738    .type 3
+                           A   739    .type 0
+                           A   740    .endef
+000302 D6 0000             A   741    	CALL	__b_frameset00
+                           A   742    ;  123	
+                           A   743    ;  124	void right(int ontime1, int offtime1)
+                           A   744    ;  125	{
+                           A   745    ;  126		PCOUT = R;				//right
+                           A   746    .line 126
+000305 E90C0FDB            A   747    	LDX	4059,#12
+000309 8B 13               A   748    	JR	_6_L_64
+                           A   749    ;  127		for(d=0;d<ontime1;d++){}
+00030B                     A   750    _6_L_65:
+                           A   751    .line 127
+00030B 880E04              A   752    	LDX	R0,4(RR14)
+00030E 881E05              A   753    	LDX	R1,5(RR14)
+000311 A8 001EE1           A   754    	CPX	R1,_d+1
+000315 1FA8 000EE0         A   755    	CPCX	R0,_d
+00031A AB 0C               A   756    	JR	GT,_6_L_67
+00031C 8B 14               A   757    	JR	_6_L_68
+00031E                     A   758    _6_L_64:
+00031E E9000000            A   759    	LDX	_d,#-0
+000322 E9000001            A   760    	LDX	_d+1,#-0
+000326 8B E3               A   761    	JR	_6_L_65
+000328                     A   762    _6_L_67:
+000328 09010001            A   763    	ADDX	_d+1,#1
+00032C 19000000            A   764    	ADCX	_d,#-0
+000330 8B D9               A   765    	JR	_6_L_65
+000332                     A   766    _6_L_68:
+                           A   767    ;  128		PCOUT=0;				// stop
+                           A   768    .line 128
+000332 E9000FDB            A   769    	LDX	4059,#-0
+000336 8B 13               A   770    	JR	_6_L_70
+                           A   771    ;  129		for(d=0;d<offtime1;d++){}
+000338                     A   772    _6_L_71:
+                           A   773    .line 129
+000338 880E06              A   774    	LDX	R0,6(RR14)
+00033B 881E07              A   775    	LDX	R1,7(RR14)
+00033E A8 001EE1           A   776    	CPX	R1,_d+1
+000342 1FA8 000EE0         A   777    	CPCX	R0,_d
+000347 AB 0C               A   778    	JR	GT,_6_L_73
+000349 8B 14               A   779    	JR	_6_L_74
+00034B                     A   780    _6_L_70:
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:  16
+
+
+PC     Object              I  Line    Source line follower.src
+00034B E9000000            A   781    	LDX	_d,#-0
+00034F E9000001            A   782    	LDX	_d+1,#-0
+000353 8B E3               A   783    	JR	_6_L_71
+000355                     A   784    _6_L_73:
+000355 09010001            A   785    	ADDX	_d+1,#1
+000359 19000000            A   786    	ADCX	_d,#-0
+00035D 8B D9               A   787    	JR	_6_L_71
+                           A   788    ;  130	}
+00035F                     A   789    _6_L_74:
+                           A   790    .line 130
+00035F D6 0000             A   791    	CALL	__b_framereset
+000362 AF                  A   792    	RET	
+                           A   793    .endfunc "right",130,"_right"
+                           A   794    	SEGMENT ROM_DATA
+                           A   795    
+                           A   796    
+                           A   797    ;**************************** _rotateR ********
+                           A   798    ;Name                         Addr/Register   S
+                           A   799    ;_d                                  STATIC    
+                           A   800    ;offtime1                             R15+6    
+                           A   801    ;ontime1                              R15+4    
+                           A   802    
+                           A   803    
+                           A   804    ; Aggregate Stack Size: 0 (words)
+                           A   805    
+                           A   806    
+                           A   807    	.FRAME _n_rotateR,?_n_rotateR,RDATA
+                           A   808    	.FRAME _f_rotateR,?_f_rotateR,EDATA
+                           A   809    	SEGMENT ollower_TEXT
+000363                     A   810    _rotateR:
+                           A   811    .define "_rotateR"
+                           A   812    .value _rotateR
+                           A   813    .class 2
+                           A   814    .type 65
+                           A   815    .type 0
+                           A   816    .endef
+                           A   817    .begfunc "rotateR",133,"_rotateR"
+                           A   818    .define "ontime1"
+                           A   819    .class 9
+                           A   820    .value 4
+                           A   821    .type 3
+                           A   822    .type 0
+                           A   823    .endef
+                           A   824    .define "offtime1"
+                           A   825    .class 9
+                           A   826    .value 6
+                           A   827    .type 3
+                           A   828    .type 0
+                           A   829    .endef
+000363 D6 0000             A   830    	CALL	__b_frameset00
+                           A   831    ;  131	
+                           A   832    ;  132	void rotateR(int ontime1, int offtime1)
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:  17
+
+
+PC     Object              I  Line    Source line follower.src
+                           A   833    ;  133	{
+                           A   834    ;  134		PCOUT = RR;				// rotateR
+                           A   835    .line 134
+000366 E90E0FDB            A   836    	LDX	4059,#14
+00036A 8B 13               A   837    	JR	_7_L_76
+                           A   838    ;  135		for(d=0;d<ontime1;d++){}
+00036C                     A   839    _7_L_77:
+                           A   840    .line 135
+00036C 880E04              A   841    	LDX	R0,4(RR14)
+00036F 881E05              A   842    	LDX	R1,5(RR14)
+000372 A8 001EE1           A   843    	CPX	R1,_d+1
+000376 1FA8 000EE0         A   844    	CPCX	R0,_d
+00037B AB 0C               A   845    	JR	GT,_7_L_79
+00037D 8B 14               A   846    	JR	_7_L_80
+00037F                     A   847    _7_L_76:
+00037F E9000000            A   848    	LDX	_d,#-0
+000383 E9000001            A   849    	LDX	_d+1,#-0
+000387 8B E3               A   850    	JR	_7_L_77
+000389                     A   851    _7_L_79:
+000389 09010001            A   852    	ADDX	_d+1,#1
+00038D 19000000            A   853    	ADCX	_d,#-0
+000391 8B D9               A   854    	JR	_7_L_77
+000393                     A   855    _7_L_80:
+                           A   856    ;  136		PCOUT=0;				// stop
+                           A   857    .line 136
+000393 E9000FDB            A   858    	LDX	4059,#-0
+000397 8B 13               A   859    	JR	_7_L_82
+                           A   860    ;  137		for(d=0;d<offtime1;d++){}
+000399                     A   861    _7_L_83:
+                           A   862    .line 137
+000399 880E06              A   863    	LDX	R0,6(RR14)
+00039C 881E07              A   864    	LDX	R1,7(RR14)
+00039F A8 001EE1           A   865    	CPX	R1,_d+1
+0003A3 1FA8 000EE0         A   866    	CPCX	R0,_d
+0003A8 AB 0C               A   867    	JR	GT,_7_L_85
+0003AA 8B 14               A   868    	JR	_7_L_86
+0003AC                     A   869    _7_L_82:
+0003AC E9000000            A   870    	LDX	_d,#-0
+0003B0 E9000001            A   871    	LDX	_d+1,#-0
+0003B4 8B E3               A   872    	JR	_7_L_83
+0003B6                     A   873    _7_L_85:
+0003B6 09010001            A   874    	ADDX	_d+1,#1
+0003BA 19000000            A   875    	ADCX	_d,#-0
+0003BE 8B D9               A   876    	JR	_7_L_83
+                           A   877    ;  138	}
+0003C0                     A   878    _7_L_86:
+                           A   879    .line 138
+0003C0 D6 0000             A   880    	CALL	__b_framereset
+0003C3 AF                  A   881    	RET	
+                           A   882    .endfunc "rotateR",138,"_rotateR"
+                           A   883    	SEGMENT ROM_DATA
+                           A   884    
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:  18
+
+
+PC     Object              I  Line    Source line follower.src
+                           A   885    
+                           A   886    ;**************************** _forward ********
+                           A   887    ;Name                         Addr/Register   S
+                           A   888    ;_d                                  STATIC    
+                           A   889    ;offtime1                             R15+6    
+                           A   890    ;ontime1                              R15+4    
+                           A   891    
+                           A   892    
+                           A   893    ; Aggregate Stack Size: 0 (words)
+                           A   894    
+                           A   895    
+                           A   896    	.FRAME _n_forward,?_n_forward,RDATA
+                           A   897    	.FRAME _f_forward,?_f_forward,EDATA
+                           A   898    	SEGMENT ollower_TEXT
+0003C4                     A   899    _forward:
+                           A   900    .define "_forward"
+                           A   901    .value _forward
+                           A   902    .class 2
+                           A   903    .type 65
+                           A   904    .type 0
+                           A   905    .endef
+                           A   906    .begfunc "forward",141,"_forward"
+                           A   907    .define "ontime1"
+                           A   908    .class 9
+                           A   909    .value 4
+                           A   910    .type 3
+                           A   911    .type 0
+                           A   912    .endef
+                           A   913    .define "offtime1"
+                           A   914    .class 9
+                           A   915    .value 6
+                           A   916    .type 3
+                           A   917    .type 0
+                           A   918    .endef
+0003C4 D6 0000             A   919    	CALL	__b_frameset00
+                           A   920    ;  139	
+                           A   921    ;  140	void forward(int ontime1, int offtime1)
+                           A   922    ;  141	{
+                           A   923    ;  142		PCOUT = FWD;			// forward
+                           A   924    .line 142
+0003C7 E90F0FDB            A   925    	LDX	4059,#15
+0003CB 8B 13               A   926    	JR	_8_L_88
+                           A   927    ;  143		for(d=0;d<ontime1;d++){}
+0003CD                     A   928    _8_L_89:
+                           A   929    .line 143
+0003CD 880E04              A   930    	LDX	R0,4(RR14)
+0003D0 881E05              A   931    	LDX	R1,5(RR14)
+0003D3 A8 001EE1           A   932    	CPX	R1,_d+1
+0003D7 1FA8 000EE0         A   933    	CPCX	R0,_d
+0003DC AB 0C               A   934    	JR	GT,_8_L_91
+0003DE 8B 14               A   935    	JR	_8_L_92
+0003E0                     A   936    _8_L_88:
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:  19
+
+
+PC     Object              I  Line    Source line follower.src
+0003E0 E9000000            A   937    	LDX	_d,#-0
+0003E4 E9000001            A   938    	LDX	_d+1,#-0
+0003E8 8B E3               A   939    	JR	_8_L_89
+0003EA                     A   940    _8_L_91:
+0003EA 09010001            A   941    	ADDX	_d+1,#1
+0003EE 19000000            A   942    	ADCX	_d,#-0
+0003F2 8B D9               A   943    	JR	_8_L_89
+0003F4                     A   944    _8_L_92:
+                           A   945    ;  144		PCOUT=0;				//	stop
+                           A   946    .line 144
+0003F4 E9000FDB            A   947    	LDX	4059,#-0
+0003F8 8B 13               A   948    	JR	_8_L_94
+                           A   949    ;  145		for(d=0;d<offtime1;d++){}
+0003FA                     A   950    _8_L_95:
+                           A   951    .line 145
+0003FA 880E06              A   952    	LDX	R0,6(RR14)
+0003FD 881E07              A   953    	LDX	R1,7(RR14)
+000400 A8 001EE1           A   954    	CPX	R1,_d+1
+000404 1FA8 000EE0         A   955    	CPCX	R0,_d
+000409 AB 0C               A   956    	JR	GT,_8_L_97
+00040B 8B 14               A   957    	JR	_8_L_98
+00040D                     A   958    _8_L_94:
+00040D E9000000            A   959    	LDX	_d,#-0
+000411 E9000001            A   960    	LDX	_d+1,#-0
+000415 8B E3               A   961    	JR	_8_L_95
+000417                     A   962    _8_L_97:
+000417 09010001            A   963    	ADDX	_d+1,#1
+00041B 19000000            A   964    	ADCX	_d,#-0
+00041F 8B D9               A   965    	JR	_8_L_95
+                           A   966    ;  146	}
+000421                     A   967    _8_L_98:
+                           A   968    .line 146
+000421 D6 0000             A   969    	CALL	__b_framereset
+000424 AF                  A   970    	RET	
+                           A   971    .endfunc "forward",146,"_forward"
+                           A   972    	XREF __b_framereset:ROM
+                           A   973    	XREF __b_frameset00:ROM
+                           A   974    	XDEF _forward
+                           A   975    	XDEF _rotateR
+                           A   976    	XDEF _right
+                           A   977    	XDEF _rotateL
+                           A   978    	XDEF _left
+                           A   979    	XDEF _reverse
+                           A   980    	XDEF _main
+                           A   981    	XDEF _read_line
+                           A   982    	XDEF _input
+                           A   983    	XDEF _runtime
+                           A   984    	XDEF _runspeed
+                           A   985    	XDEF _d
+                           A   986    	END
+Zilog Z8 Encore! Macro Assembler Version 2.52 (10101401) 21-Feb-12     14:55:32     page:  20
+
+
+PC     Object              I  Line    Source 
+
+
+Errors: 0
+Warnings: 0
+Lines Assembled: 987

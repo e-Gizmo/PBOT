@@ -1,0 +1,78 @@
+[WorkState_v1_2]
+ptn_Child1=Frames
+
+[WorkState_v1_2.Frames]
+ptn_Child1=ChildFrames
+
+[WorkState_v1_2.Frames.ChildFrames]
+ptn_Child1=Document-0
+ptn_Child2=Document-1
+ptn_Child3=Document-2
+
+[WorkState_v1_2.Frames.ChildFrames.Document-0]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_2.Frames.ChildFrames.Document-0.ViewFrame-0]
+DocPathName=.\LINEFO~1.C
+DocTemplateIndex=0
+DocumentString=IDE.Document
+IsActiveChildFrame=True
+IsFrameVisible=True
+WindowPlacement=MCAAAAAACAAAAAAADAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPCOPPPPPPMCAAAAAAKDAAAAAAJNDAAAAAAECAAAAA
+
+[WorkState_v1_2.Frames.ChildFrames.Document-1]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_2.Frames.ChildFrames.Document-1.ViewFrame-0]
+DocPathName=C:\PROGRA~1\ZiLOG\ZDSII_~1.0\src\boot\common\startupl.asm
+DocTemplateIndex=0
+DocumentString=IDE.Document
+IsActiveChildFrame=False
+IsFrameVisible=True
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPCOPPPPPPGBAAAAAANBAAAAAAFGCAAAAAPDBAAAAA
+
+[WorkState_v1_2.Frames.ChildFrames.Document-2]
+ptn_Child1=ViewFrame-0
+
+[WorkState_v1_2.Frames.ChildFrames.Document-2.ViewFrame-0]
+DocPathName=C:\PROGRA~1\ZiLOG\ZDSII_~2.0\src\boot\common\startupl.asm
+DocTemplateIndex=0
+DocumentString=IDE.Document
+IsActiveChildFrame=False
+IsFrameVisible=True
+WindowPlacement=MCAAAAAAAAAAAAAABAAAAAAAPPPPPPPPPPPPPPPPIPPPPPPPCOPPPPPPCDAAAAAACDAAAAAACICAAAAAPBCAAAAA
+
+[bookmarks]
+C:\Documents and Settings\agda family\Desktop\ENERGY~1\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+C:\Documents and Settings\student\ENERGY~1\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+C:\PROGRA~1\ZiLOG\ZDSII_~1.1\src\boot\common\startupl.asm=31
+C:\PROGRA~1\ZiLOG\ZDSII_~2.0\src\boot\common\startupl.asm=43
+C:\Program Files\ZiLOG\ZDSII_~1.1\src\boot\common\startupl.asm=31
+C:\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+D:\Admin\My Documents\My Documents\e-Gizmo Projects\ENERGY~1\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+D:\Admin\My Documents\e-Gizmo Projects\ENERGY~1\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+D:\DEFAUL~1\MYDOCU~1\Emigoz\(55)MO~1\emeter\src\main.c=65,67,91,94,269,272,277,279,283,383
+D:\DOCUME~1\Admin\MYDOCU~1\Emigoz\(55)MO~1\emeter\src\main.c=63,65,89,92,257,260,265,267,271,417
+D:\Default User\My Documents\Emigoz\(55)MO~1\emeter\src\main.c=63,65,89,92,257,260,265,267,271,417
+D:\Documents and Settings\Admin\E-GIZMO Documents\Emigoz\(55)MO~1\emeter\src\main.c=63,65,89,92,257,260,265,267,271,417
+D:\Documents and Settings\Admin\E-GIZMO Documents\Emigoz\FINISH PROJECTS\(55)MO~1\emeter\src\main.c=66,68,92,95,270,273,278,280,284,384
+D:\Documents and Settings\Admin\My Documents\Emigoz\(55)MO~1\emeter\src\main.c=63,65,89,92,257,260,265,267,271,417
+D:\Documents and Settings\Admin\My Documents\Emigoz\FINISH PROJECTS\(55)MO~1\emeter\src\main.c=66,68,92,95,270,273,278,280,284,384
+D:\Documents and Settings\Admin\My Documents\My Documents\e-Gizmo Projects\ENERGY~1\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+D:\Documents and Settings\Admin\My Documents\e-Gizmo Projects\ENERGY~1\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+D:\My Documents\My Documents\e-Gizmo Projects\ENERGY~1\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+D:\My Documents\e-Gizmo Projects\ENERGY~1\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+D:\User Files\Admin\My Documents\Emigoz\(55)MO~1\emeter\src\main.c=63,65,89,92,257,260,265,267,271,417
+D:\User Files\Admin\My Documents\Emigoz\FINISH PROJECTS\(55)MO~1\emeter\src\main.c=66,68,92,95,270,273,278,280,284,384
+D:\User Files\Admin\My Documents\Emigoz\FINISH~1\(55)MO~1\emeter\src\main.c=63,65,89,92,257,260,265,267,271,417
+D:\User Files\Admin\My Documents\My Documents\e-Gizmo Projects\ENERGY~1\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+D:\e-Gizmo CD\My Documents\My Documents\e-Gizmo Projects\ENERGY~1\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+D:\e-Gizmo CD\My Documents\e-Gizmo Projects\ENERGY~1\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+D:\e-Gizmo CD\e-Gizmo KITS\ENERGY~1\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+D:\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+E:\Documents and Settings\Admin\My Documents\Encore C Programs\(55)MO~1\emeter\src\main.c=63,65,89,92,257,260,265,267,271,417
+E:\Documents and Settings\Admin\My Documents\My Documents\e-Gizmo Projects\ENERGY~1\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+E:\Documents and Settings\Admin\My Documents\e-Gizmo Projects\ENERGY~1\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+E:\e-Gizmo CD\e-Gizmo KITS\ENERGY~1\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
+H:\memcard\E-GIZMO Documents\Emigoz\(55)MO~1\emeter\src\main.c=63,65,89,92,257,260,265,267,271,417
+I:\e-Gizmo CD\e-Gizmo KITS\ENERGY~1\emeter\src\main.c=63,65,89,92,259,262,267,269,273,381
